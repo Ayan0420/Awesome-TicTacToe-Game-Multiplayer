@@ -165,7 +165,6 @@ function MultiplayerGameBoard() {
         });
 
         socket.emit("stopGame", { roomId, playerName: player1 });
-        navigate("/");
     };
 
     const renderCell = (index) => (
