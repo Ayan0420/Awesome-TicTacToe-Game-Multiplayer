@@ -47,6 +47,12 @@ function MultiplayerGameBoard() {
     const isPlayerTurn = currentTurn === playerSymbol;
 
     useEffect(() => {
+
+        // Reconnect to the WebSocket server when the page refreshes
+        if(!socket.connected) {
+            socket.connect(); 
+        }
+
         socket.emit("joinRoom", { roomId, playerName: player1 });
 
         socket.on("moveMade", ({ board: newBoard, symbol }) => {

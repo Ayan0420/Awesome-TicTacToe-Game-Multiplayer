@@ -11,13 +11,14 @@ const initialBoard = Array(9).fill(null);
 function GameBoard() {
     const { state } = useLocation();
     const navigate = useNavigate();
-    const player1 = state?.player1 || "Player 1";
-    const ai = "AI";
-    const difficulty = state?.difficulty || "easy";
 
     // Load game state from local storage
     const savedGame = JSON.parse(localStorage.getItem("gameState") || "{}");
     
+    const player1 = state?.player1 || savedGame.player1  || "Player 1";
+    const ai = "AI";
+    const difficulty = state?.difficulty || savedGame.difficulty || "easy";
+
     const [board, setBoard] = useState(savedGame.board || initialBoard);
     const [roundResults, setRoundResults] = useState(savedGame.roundResults || []);
     const [isAITurn, setIsAITurn] = useState(savedGame.isAITurn || false);
@@ -38,6 +39,8 @@ function GameBoard() {
 
     useEffect(() => {
         const data = {
+            player1,
+            difficulty,
             board,
             roundResults,
             isAITurn,

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PreviousGameSessions from "../components/PreviousGameSessions";
 import LeaderBoard from "../components/LeaderBoard";
 import { useEffect, useState } from "react";
+import notyf from "../notyf";
 
 export default function Home() {
     const [hasCurrentGame, setHasCurrentGame] = useState(false);
@@ -10,7 +11,7 @@ export default function Home() {
 
     useEffect(() => {
         const gameStateString = localStorage.getItem("gameState");
-        console.log("Raw from localStorage:", gameStateString);
+        // console.log("Raw from localStorage:", gameStateString);
     
         if (gameStateString) {
             try {
@@ -19,7 +20,7 @@ export default function Home() {
                 setCurrentGameMode(gameState.gameMode);
                 setCurrentGameId(gameState.roomId);
             } catch (err) {
-                console.error("Failed to parse game state:", err);
+                notyf.error("Failed to parse game state:", err);
                 setHasCurrentGame(false);
             }
         } else {
