@@ -4,6 +4,7 @@ import axios from "axios";
 import GameOverPopup from "../components/GameOverPopup";
 import env from "../config/env";
 import notyf from "../notyf";
+import RoundHistory from "../components/RoundHistory";
 
 const initialBoard = Array(9).fill(null);
 
@@ -238,6 +239,10 @@ function GameBoard() {
                 <button className="btn btn-danger" onClick={handleStop} type="button">
                     Stop Game
                 </button>
+            </div>
+
+            <div className="mx-auto my-5" style={{ maxWidth: "300px" }}>
+                <RoundHistory  rounds={roundResults} />
             </div>
 
             {gameOver && (
