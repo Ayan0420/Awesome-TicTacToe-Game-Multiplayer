@@ -18,6 +18,14 @@ function App() {
                     <Route path="/game" element={<GameBoardSingleplayer />} />
                     <Route path="/matchmaking" element={<NewMultiPlayerGame />} />
                     <Route path="/multiplayer/:roomId" element={<GameBoardMultiplayer />} />
+                    <Route path="*" element={
+                        <div className="text-center my-5 text-danger">
+                            <h1>404 - Page Not Found</h1>
+                            <p>The requested page could not be found.</p>
+                            
+                        </div>
+                    } />
+
                 </Routes>
             </Router>
         </SocketProvider>
